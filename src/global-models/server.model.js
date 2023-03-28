@@ -2,6 +2,8 @@
 import express from 'express';
 // Cors
 import cors from 'cors';
+// Configs
+import { dbConnection } from '../config';
 
 class Server {
   constructor() {
@@ -9,8 +11,13 @@ class Server {
     this.port = process.env.PORT || '3001';
 
     // DB Connection
+    this.dbConnect();
     // Initial methods
     this.middlewares();
+  }
+
+  async dbConnect() {
+    await dbConnection();
   }
 
   middlewares() {
