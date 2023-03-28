@@ -4,16 +4,22 @@ import express from 'express';
 import cors from 'cors';
 // Configs
 import { dbConnection } from '../config';
+// Routes
+import { authRoutes } from '../entities/auth';
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '3001';
+    this.apiPaths = {
+      auth: '/api/auth'
+    }
 
     // DB Connection
     this.dbConnect();
     // Initial methods
     this.middlewares();
+    this.routes();
   }
 
   async dbConnect() {
@@ -26,7 +32,7 @@ class Server {
   }
 
   routes() {
-    throw new Error( 'Method not implemented yet' )
+    this.app.use( this.apiPaths.auth, authRoutes );
   }
 
   listen() {
