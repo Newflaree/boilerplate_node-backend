@@ -6,6 +6,10 @@ import {
   authRegister,
   renewToken
 } from '../controllers';
+// Helpers
+import { emailValidator } from '../../../helpers/db/users';
+// Middlewares
+import { validateFields } from '../../../middlewares';
 
 
 /*
@@ -13,7 +17,15 @@ import {
  */
 const router = Router();
 
-router.post( '/register', authRegister );
+router.post( '/register', [
+  check( 'email', 'El correo electrónico es necesario' ).isEmail(),
+  check( 'email' ).custom( email => emailValidator( email ) ),
+  check( 'name', 'El nombre de usuario es necesario' ).not().isEmpty(),
+  check( 'password', 'La contraseña debe tener al menos 6 carácteres' ).isLength({ min: 6 }),
+  validateFields
+],
+  authRegister );
+
 router.post( '/login', authLogin );
 router.get( '/renew-token', renewToken );
 

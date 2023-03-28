@@ -3,10 +3,15 @@ import { validationResult } from 'express-validator';
 
 const validateFields = ( req = request, res = response, next ) => {
   const errors = validationResult( req )
-  console.log( errors );
+
+  const customErrors = errors.errors.map( err => ({
+    ok: false,
+    param: err.param,
+    msg: err.msg
+  }));
 
   if ( !errors.isEmpty() ) {
-    return res.status( 400 ).json( errors );
+    return res.status( 400 ).json( customErrors );
   }
 
   next();
