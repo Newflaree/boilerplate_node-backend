@@ -1,5 +1,11 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
+// Controllers
+import {
+  authLogin,
+  authRegister,
+  renewToken
+} from '../controllers';
 
 
 /*
@@ -7,8 +13,8 @@ import { check } from 'express-validator';
  */
 const router = Router();
 
-router.post( '/register' );
-router.post( '/login' );
-router.get( '/renew-token' );
+router.post( '/register', authRegister );
+router.post( '/login', authLogin );
+router.get( '/renew-token', renewToken );
 
 export default router;
