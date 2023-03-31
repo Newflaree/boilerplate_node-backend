@@ -3,15 +3,15 @@ import { request, response } from 'express';
 import { authLoginService } from '../services';
 
 /**
+ * Handle a POST request to login a exists user.
+ *
  * PATH: /api/auth/register
  * AUTH-REQUIRED: false
  * ADMIN-REQUIRED: false
  *
- * Handle a POST request to login a exists user.
- *
- * @param {Object} req - The HTTP request object.
- * @param {Object} res - The HTTP response object.
- * @returns {void}
+ * @param { Object } req - The HTTP request object.
+ * @param { Object } res - The HTTP response object.
+ * @returns { void }
  */
 const authLogin = async (
   req = request,

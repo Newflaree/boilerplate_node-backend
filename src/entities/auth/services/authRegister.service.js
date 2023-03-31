@@ -7,10 +7,10 @@ import { User } from '../../../global-models';
 /**
  * Register a new user.
  *
- * @param {string} email - The user's email.
- * @param {string} name - The user's name.
- * @param {string} password - The user's password.
- * @returns {Object} An object containing the new user and a JWT.
+ * @param { string } email - The user's email.
+ * @param { string } name - The user's name.
+ * @param { string } password - The user's password.
+ * @returns { Object } An object containing the new user and a JWT.
  */
 const authRegisterService = async (
   email = '',
@@ -36,10 +36,10 @@ const authRegisterService = async (
 /**
  * Create a new user and save to the database.
  *
- * @param {string} email - The user's email.
- * @param {string} name - The user's name.
- * @param {string} password - The user's password.
- * @returns {Object} The new user object.
+ * @param { string } email - The user's email.
+ * @param { string } name - The user's name.
+ * @param { string } password - The user's password.
+ * @returns { Object } The new user object.
  */
 const createUser = async (
   email,
@@ -63,8 +63,8 @@ const createUser = async (
 /**
  * Generate a JWT for a given user ID.
  *
- * @param {string} userId - The user ID to generate the JWT for.
- * @returns {string} A JWT for the given user ID.
+ * @param { string } userId - The user ID to generate the JWT for.
+ * @returns { string } A JWT for the given user ID.
  */
 const generateToken = async ( userId ) => {
   try {

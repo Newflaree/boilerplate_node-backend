@@ -3,15 +3,15 @@ import { request, response } from 'express';
 import { authRegisterService } from '../services';
 
 /**
+ * Handle a POST request to register a new user.
+ *
  * PATH: /api/auth/register
  * AUTH-REQUIRED: false
  * ADMIN-REQUIRED: false
  *
- * Handle a POST request to register a new user.
- *
- * @param {Object} req - The HTTP request object.
- * @param {Object} res - The HTTP response object.
- * @returns {void}
+ * @param { Object } req - The HTTP request object.
+ * @param { Object } res - The HTTP response object.
+ * @returns { void }
  */
 const authRegister = async (
   req = request,

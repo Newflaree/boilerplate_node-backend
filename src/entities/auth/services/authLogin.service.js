@@ -7,16 +7,16 @@ import { User } from '../../../global-models';
 /**
  * Login service for authenticating user and returning JWT token
  *
- * @param {string} email - User's email
- * @param {string} password - User's password
- * @returns {object} - An object containing the authentication status and JWT token
+ * @param { string } email - User's email
+ * @param { string } password - User's password
+ * @returns { object } - An object containing the authentication status and JWT token
  */
 const authLoginService = async (
   email = '',
   password = ''
 ) => {
   try {
-    const logedUser = await authenticateUser( email, password );
+    const { logedUser } = await authenticateUser( email, password );
     const token = await generateToken( logedUser._id );
 
     return {
@@ -27,20 +27,20 @@ const authLoginService = async (
     };
 
   } catch ( error ) {
-    return handleError( error )
+    return handleError( error );
   }
 };
 
 /**
  * Authenticate user and generate JWT token
  *
- * @param {string} email - User's email
- * @param {string} password - User's password
- * @returns {object} - An object containing the authentication status and JWT token
+ * @param { string } email - User's email
+ * @param { string } password - User's password
+ * @returns { object } - An object containing the authentication status and JWT token
  */
 const authenticateUser = async (
-  email,
-  password
+  email = '',
+  password = ''
 ) => {
   const errorMsg = 'Correo electrónico o contraseña incorrentos';
 
@@ -57,7 +57,9 @@ const authenticateUser = async (
       throw new Error( errorMsg );
     }
 
-    return logedUser;
+    return {
+      logedUser
+    };
 
   } catch ( error ) {
     console.error( `${ '[SERVICE.AUTH-LOGIN]'.bgRed }: ${ error }`);
@@ -68,9 +70,8 @@ const authenticateUser = async (
 /**
  * Generate a JWT for a given user ID.
  *
- * @param {string} userId - The user ID to generate the JWT for.
- * @returns {string} A JWT for the given user ID.
- * @throws {Error} Throws an error if there is an issue generating the JWT.
+ * @param { string } userId - The user ID to generate the JWT for.
+ * @returns { string } A JWT for the given user ID.
  */
 const generateToken = async ( userId ) => {
   try {
@@ -85,8 +86,9 @@ const generateToken = async ( userId ) => {
 /**
  *
  * Handle errors and return HTTP response
- * @param {Error} error - The error to handle
- * @returns {object} - An object containing the HTTP response
+ *
+ * @param { Error } error - The error to handle
+ * @returns { object } - An object containing the HTTP response
  */
 const handleError = ( error ) => {
   console.error( `${ '[SERVICE.AUTH-LOGIN]'.bgRed }: ${ error }`);
