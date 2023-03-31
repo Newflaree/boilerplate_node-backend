@@ -23,10 +23,14 @@ router.post( '/register', [
   check( 'name', 'El nombre de usuario es necesario' ).not().isEmpty(),
   check( 'password', 'La contraseña debe tener al menos 6 carácteres' ).isLength({ min: 6 }),
   validateFields
-],
-  authRegister );
+], authRegister );
 
-router.post( '/login', authLogin );
+router.post( '/login', [
+  check( 'email', 'El correo electrónico es necesario' ).isEmail(),
+  check( 'password', 'La contraseña es necesaria' ).not().isEmpty(),
+  validateFields
+], authLogin );
+
 router.get( '/renew-token', renewToken );
 
 export default router;

@@ -2,7 +2,7 @@ import { request, response } from 'express';
 // Services
 import { authRegisterService } from '../services';
 
-/*
+/**
  * PATH: /api/auth/register
  * AUTH-REQUIRED: false
  * ADMIN-REQUIRED: false
@@ -21,7 +21,6 @@ const authRegister = async (
   const { email, name, password } = req.body;
 
   try {
-
     const { newUser, token } = await authRegisterService( email, name, password );
 
     res.status(201).json({
